@@ -1,0 +1,189 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "lead-intake",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "d3761cfe-4921-4a4b-8941-d5d206831200",
+      "name": "Webhook",
+      "webhookId": "744bd92e-b589-43b3-8085-9f19b9402c17"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Extract the following details from the message: Name, Company, and Requirement. \nAdditionally, classify the intent of the message as 'Sales', 'Support', or 'Spam'. \n\nMessage: {{ $json.body.message }}\n\nPlease provide the output in this format:\nIntent: [Classification result]\nName: [Sender name]\nCompany: [Company name]\nRequirement: [Short summary of the request]",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        224,
+        0
+      ],
+      "id": "9506031f-85af-45fd-b7c7-aa4917433ee1",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": "llama-3.3-70b-versatile",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        80,
+        208
+      ],
+      "id": "63a05ae4-1a57-41a8-a33d-932fa6bc8696",
+      "name": "Groq Chat Model",
+      "credentials": {
+        "groqApi": {
+          "id": "HzUKHReBFYhH0Qh6",
+          "name": "Groq account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1hOVZ7eWo5Q8UraFtwBLK3HSYkkrGsIXiBV4krV9m6T4",
+          "mode": "list",
+          "cachedResultName": "n8n googlesheets",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1hOVZ7eWo5Q8UraFtwBLK3HSYkkrGsIXiBV4krV9m6T4/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1hOVZ7eWo5Q8UraFtwBLK3HSYkkrGsIXiBV4krV9m6T4/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Intent": "Sales",
+            "Name": "Sara",
+            "Company": "TechBD",
+            "Requirement": "10 premium licenses"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Intent",
+              "displayName": "Intent",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Company",
+              "displayName": "Company",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Requirement",
+              "displayName": "Requirement",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        576,
+        0
+      ],
+      "id": "73a5612d-e64a-4030-9a94-de0f29269a7c",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "kgxh37djvY0SyQ4T",
+          "name": "Google Sheets account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "8f1aeb47-4e94-436f-a62c-bc8a0c6c1846",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "a46591efbeb1ef009fbf3c19fd20dbbe12cac4a1ec6b143e02d1ef77f7516b10"
+  },
+  "id": "hXCtZfGBz5r4cltC",
+  "tags": []
+}

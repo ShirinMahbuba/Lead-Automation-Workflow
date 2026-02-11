@@ -2,11 +2,11 @@
 
 
                                                                        
-                                                                       1. Project Overview
+## Project Overview
 This project demonstrates an automated lead processing system built using n8n and a Large Language Model (LLM). It captures incoming lead data via a Webhook, uses an AI Agent to analyze intent and extract key details, and saves the structured results into Google Sheets as a mock datastore.
 
 
-                                                                       2. Workflow Architecture
+## Workflow Architecture
                                                                        
 Webhook Trigger: Receives raw lead messages (e.g., from a Python script or API).
 
@@ -26,7 +26,7 @@ Mock Datastore: The final structured output is appended as a new row in a Google
 
 
 
-                                                                      3. Technical Implementation 
+## Technical Implementation 
                                                                       
 Prompt Strategy: I implemented a Structured Output Prompting strategy. By instructing the AI to categorize the data into specific fields (Intent, Name, Company, Requirement), I ensured that the output is clean and ready for database insertion without requiring further manual cleaning.
 
@@ -35,8 +35,7 @@ Hallucination Reduction: To reduce hallucinations, the AI Agent is configured wi
 Error-Handling Approach: I optimized the Google Sheets node by using the "Append Row" operation instead of "Append or Update". This avoids common "Match Column" errors that occur when a lead ID is not yet established. Additionally, the workflow shows green status indicators across all nodes, confirming data integrity from the Webhook to the final storage.
 
 
-
-                                                                       4. Project Submission Components
+## Project Submission Components
                                                    
 n8n Workflow (JSON): Exported file containing the full logic.
 
@@ -44,6 +43,7 @@ Mock Datastore: A Google Sheet containing the successfully stored lead data.
 
 
 Demo Video: Recording of the end-to-end execution, showing the Python script trigger and the resulting row in the sheet.
+
 ## Google Sheet :
 https://docs.google.com/spreadsheets/d/1hOVZ7eWo5Q8UraFtwBLK3HSYkkrGsIXiBV4krV9m6T4/edit?usp=sharing
 
@@ -52,5 +52,6 @@ https://shirinmahbuba.app.n8n.cloud/webhook/lead-intake
 
 
 ** The provided Webhook URL is a POST endpoint. To verify the live automation, please refer to the Demo Video where I demonstrate the data flow from the API trigger to the Google Sheets storage. **
+
 
 

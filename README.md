@@ -1,11 +1,11 @@
-                                                      AI-Driven Lead Automation Workflow
+                                                          AI Agent Workflow Automation (n8n + LLM)
                                                       
 
 ![](https://github.com/ShirinMahbuba/Lead-Automation-Workflow/blob/main/Screenshot%202026-02-12%20032945.png)
 ![](https://github.com/ShirinMahbuba/Lead-Automation-Workflow/blob/main/Screenshot%202026-02-12%20033015.png)
 
                                                                        
-#Assessment 1: AI Agent Workflow Automation (n8n + LLM)
+
 📌 Project Overview
 This project demonstrates an automated lead processing system built using n8n and a Large Language Model (LLM). The system intelligently captures incoming lead data, analyzes the sender's intent, extracts key information, and stores it in a structured format for business use.
 
@@ -64,6 +64,7 @@ https://drive.google.com/file/d/1kbEnTRc6gCuRq5QikS2-aikeZPv4fcdz/view?usp=shari
 
 
 ** The provided Webhook URL is a POST endpoint. To verify the live automation, please refer to the Demo Video where I demonstrate the data flow from the API trigger to the Google Sheets storage. **
+
 
 
 

@@ -5,17 +5,18 @@
 ![](https://github.com/ShirinMahbuba/Lead-Automation-Workflow/blob/main/Screenshot%202026-02-12%20033015.png)
 
                                                                        
-## Project Overview
-This project demonstrates an automated lead processing system built using n8n and a Large Language Model (LLM). It captures incoming lead data via a Webhook, uses an AI Agent to analyze intent and extract key details, and saves the structured results into Google Sheets as a mock datastore.
+#Assessment 1: AI Agent Workflow Automation (n8n + LLM)
+📌 Project Overview
+This project demonstrates an automated lead processing system built using n8n and a Large Language Model (LLM). The system intelligently captures incoming lead data, analyzes the sender's intent, extracts key information, and stores it in a structured format for business use.
 
+🏗 Workflow Architecture
+The workflow is designed to be robust and follows these steps:
 
-## Workflow Architecture
-                                                                       
-Webhook Trigger: Receives raw lead messages (e.g., from a Python script or API).
+Webhook Trigger: Receives raw lead messages via a POST endpoint (integrated with a Python script or API).
 
-AI Agent Processing: Powered by the Groq Chat Model, the agent analyzes the text for specific insights.
+AI Agent Processing: Powered by the Groq Chat Model, the agent performs a deep analysis of the message.
 
-Data Extraction: The LLM successfully identifies and categorizes:
+Data Extraction: The LLM successfully identifies and categorizes the following:
 
 Intent: Sales, Support, or Spam.
 
@@ -27,25 +28,30 @@ Requirement: Specific details of the inquiry.
 
 Mock Datastore: The final structured output is appended as a new row in a Google Sheet.
 
+🛠 Technical Implementation
+💡 Prompt Strategy
+I implemented a Structured Output Prompting strategy. By providing the AI with clear instructions to categorize data into specific JSON-like fields (Intent, Name, Company, Requirement), I ensured that the output is clean, consistent, and ready for database insertion without manual cleaning.
 
+🛡 Hallucination Reduction
+To minimize hallucinations, the AI Agent is configured with:
 
-## Technical Implementation 
-                                                                      
-Prompt Strategy: I implemented a Structured Output Prompting strategy. By instructing the AI to categorize the data into specific fields (Intent, Name, Company, Requirement), I ensured that the output is clean and ready for database insertion without requiring further manual cleaning.
+Strict Context Window: Using the Groq Chat Model with specific system instructions.
 
-Hallucination Reduction: To reduce hallucinations, the AI Agent is configured with a strict context window through the Groq Chat Model. I instructed the agent to only extract facts explicitly mentioned in the input message. If information is missing, it is trained to leave the field blank rather than inventing data.
+Fact-Only Extraction: I instructed the agent to extract ONLY facts explicitly mentioned in the input. If a piece of information (e.g., Company name) is missing, it is trained to return "N/A" or leave it blank rather than inventing data.
 
-Error-Handling Approach: I optimized the Google Sheets node by using the "Append Row" operation instead of "Append or Update". This avoids common "Match Column" errors that occur when a lead ID is not yet established. Additionally, the workflow shows green status indicators across all nodes, confirming data integrity from the Webhook to the final storage.
+⚠️ Error-Handling Approach
+Resilient Storage: Optimized the Google Sheets node using the "Append Row" operation to avoid "Match Column" errors often found in update operations.
 
+Data Integrity: The workflow uses status monitoring across all nodes, ensuring that every lead captured by the Webhook successfully reaches the Google Sheet.
 
-## Project Submission Components
-                                                   
-n8n Workflow (JSON): Exported file containing the full logic.
+🔗 Submission Components
+n8n Workflow (JSON): Exported file containing the complete logic.
 
-Mock Datastore: A Google Sheet containing the successfully stored lead data.
+Mock Datastore: Google Sheets Link
 
+Live Webhook Endpoint: n8n Webhook URL
 
-Demo Video: Recording of the end-to-end execution, showing the Python script trigger and the resulting row in the sheet.
+Demo Video: Included in the submission folder, demonstrating the end-to-end execution.
 
 ## Google Sheet :
 https://docs.google.com/spreadsheets/d/1hOVZ7eWo5Q8UraFtwBLK3HSYkkrGsIXiBV4krV9m6T4/edit?usp=sharing
@@ -53,8 +59,12 @@ https://docs.google.com/spreadsheets/d/1hOVZ7eWo5Q8UraFtwBLK3HSYkkrGsIXiBV4krV9m
 ## Live Project Link:
 https://shirinmahbuba.app.n8n.cloud/webhook/lead-intake
 
+## Demo vedio link:
+https://drive.google.com/file/d/1kbEnTRc6gCuRq5QikS2-aikeZPv4fcdz/view?usp=sharing
+
 
 ** The provided Webhook URL is a POST endpoint. To verify the live automation, please refer to the Demo Video where I demonstrate the data flow from the API trigger to the Google Sheets storage. **
+
 
 
 

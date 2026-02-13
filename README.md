@@ -1,5 +1,8 @@
-                                                             AI-Driven Lead Automation Workflow
+                                                      AI-Driven Lead Automation Workflow
+                                                      
 
+![](https://github.com/ShirinMahbuba/Lead-Automation-Workflow/blob/main/Screenshot%202026-02-12%20032945.png)
+![](https://github.com/ShirinMahbuba/Lead-Automation-Workflow/blob/main/Screenshot%202026-02-12%20033015.png)
 
                                                                        
 ## Project Overview
@@ -52,6 +55,7 @@ https://shirinmahbuba.app.n8n.cloud/webhook/lead-intake
 
 
 ** The provided Webhook URL is a POST endpoint. To verify the live automation, please refer to the Demo Video where I demonstrate the data flow from the API trigger to the Google Sheets storage. **
+
 
 
 
